@@ -14,21 +14,27 @@ export const TodoItem: React.FC<TodoItemProps> = ({
   onDelete,
 }) => {
   return (
-    <div className="flex items-center justify-between p-4 bg-white rounded-lg shadow mb-2">
+    <div
+      className={`group flex items-center justify-between p-4 bg-white rounded-xl border border-gray-100 hover:border-indigo-200 transition-all duration-200 ${
+        todo.completed ? "opacity-75" : ""
+      }`}
+    >
       <div className="flex items-center space-x-4">
         <button
           onClick={() => onToggle(todo)}
-          className={`w-6 h-6 ${
+          className={`w-6 h-6 transition-all duration-200 ${
             todo.completed
               ? "text-green-500 hover:text-green-600"
-              : "text-gray-400 hover:text-gray-500"
+              : "text-gray-300 hover:text-indigo-500"
           }`}
         >
           <CheckCircleIcon className="w-6 h-6" />
         </button>
         <span
-          className={`text-lg ${
-            todo.completed ? "line-through text-gray-400" : "text-gray-700"
+          className={`text-lg transition-all duration-200 ${
+            todo.completed
+              ? "line-through text-gray-400"
+              : "text-gray-700 group-hover:text-indigo-600"
           }`}
         >
           {todo.title}
@@ -36,7 +42,7 @@ export const TodoItem: React.FC<TodoItemProps> = ({
       </div>
       <button
         onClick={() => onDelete(todo.id)}
-        className="text-red-500 hover:text-red-600"
+        className="opacity-0 group-hover:opacity-100 text-gray-400 hover:text-red-500 transition-all duration-200"
       >
         <TrashIcon className="w-5 h-5" />
       </button>
